@@ -25,7 +25,7 @@ formAddTask.addEventListener("submit", (e) => {
 
   document.getElementById("lista-tarefas").appendChild(novaTarefa);
 
-  alert("Tarefa salva!");
+  alert("Tarefa adicionada!");
 
   inputNomeTarefa.value = "";
 });
