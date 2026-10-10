@@ -6,3 +6,7 @@ body {
 #main {
   max-width: 800px;
 }
+
+.clicavel {
+  cursor: pointer;
+}

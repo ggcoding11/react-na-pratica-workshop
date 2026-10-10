@@ -20,8 +20,12 @@ formAddTask.addEventListener("submit", (e) => {
             <span>${inputNomeTarefa.value}</span>
           </div>
 
-          <i class="bi bi-trash"></i>
+          <i class="delete-button bi bi-trash clicavel fs-lg"></i>
   `;
+
+  novaTarefa
+    .querySelector(".delete-button")
+    .addEventListener("click", deletarTarefa);
 
   document.getElementById("lista-tarefas").appendChild(novaTarefa);
 
@@ -29,3 +33,7 @@ formAddTask.addEventListener("submit", (e) => {
 
   inputNomeTarefa.value = "";
 });
+
+const deletarTarefa = (e) => {
+  e.currentTarget.parentElement.remove()
+};
