@@ -3,25 +3,32 @@ import { TaskItem } from "./components/TaskItem";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  
+
   const [taskName, setTaskName] = useState("");
 
-  const adicionarTarefa = (name) => {
-    setTasks((currentTasks) => [...currentTasks, { name, completed: false }]);
+  const adicionarTarefa = (e) => {
+    e.preventDefault();
+
+    setTasks((tasks) => [
+      ...tasks,
+      { id: crypto.randomUUID(), name: taskName, completed: false },
+    ]);
+
+    setTaskName("");
   };
 
-  const concluirTarefa = (taskIndex) => {
-    setTasks((currentTasks) =>
-      currentTasks.map((task, index) =>
-        index === taskIndex ? { ...task, completed: !task.completed } : task,
+  const concluirTarefa = (idConcluido) => {
+    setTasks((tasks) =>
+      tasks.map((task) =>
+        task.id === idConcluido
+          ? { ...task, completed: !task.completed }
+          : task,
       ),
     );
   };
 
-  const deletarTarefa = (taskIndex) => {
-    setTasks((currentTasks) =>
-      currentTasks.filter((_, index) => index !== taskIndex),
-    );
+  const deletarTarefa = (idDeletado) => {
+    setTasks((tasks) => tasks.filter((task) => task.id !== idDeletado));
   };
 
   return (
@@ -42,7 +49,7 @@ function App() {
 
           <button
             data-bs-toggle="dialog"
-            data-bs-target={"dialog-add-task"}
+            data-bs-target="#dialog-add-task"
             type="button"
             className="btn-solid theme-primary w-100 py-4"
           >
@@ -52,12 +59,12 @@ function App() {
         </div>
 
         <div className="d-flex flex-column gap-4" id="lista-tarefas">
-          {tasks.map((task, index) => (
+          {tasks.map((task) => (
             <TaskItem
-              key={index}
+              key={task.id}
               task={task}
-              onToggleCompletion={() => concluirTarefa(index)}
-              onDelete={() => deleteTask(index)}
+              onConcluirTarefa={() => concluirTarefa(task.id)}
+              onDeletarTarefa={() => deletarTarefa(task.id)}
             />
           ))}
         </div>
