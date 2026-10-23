@@ -2,13 +2,23 @@ import React, { use, useEffect, useState } from "react";
 import api from "../services/api";
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
+  const [laptops, setLaptops] = useState([]);
+  const [beauty, setBeauty] = useState([]);
+  const [furniture, setFurniture] = useState([]);
+
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const responseLaptops = await api.get("/products/category/laptops");
+        const responseBeauty = await api.get("/products/category/beauty");
+        const responseFurniture = await api.get("/products/category/furniture");
+
+        setLaptops(responseLaptops.data.products);
+        setBeauty(responseBeauty.data.products);
+        setFurniture(responseFurniture.data.products);
       } catch (error) {
         setError(true);
 
@@ -77,17 +87,96 @@ const HomePage = () => {
           </div>
         </div>
       </header>
-      <section className="min-h-screen flex flex-col items-center gap-4 py-4">
+      <section className="min-h-screen flex flex-col items-center gap-4 py-4 px-4">
         {loading ? (
           <span className="text-xl">Loading...</span>
         ) : error ? (
           <span className="text-xl">Erro ao puxar os produtos da API!</span>
         ) : (
-          <>
-            <h1 className="text-medium font-semibold">
+          <div className="flex flex-col gap-4 w-full">
+            <h1 className="text-center text-medium font-semibold">
               Confira o nosso catálogo de produtos
             </h1>
-          </>
+
+            <div>
+              <h3>Laptops</h3>
+
+              <div className="flex flex-nowrap">
+                {laptops.map((laptop, index) => (
+                  <div key={index} className="card bg-base-100 w-96 shadow-sm">
+                    <figure>
+                      <img
+                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                        alt="Shoes"
+                      />
+                    </figure>
+                    <div className="card-body">
+                      <h2 className="card-title">Card Title</h2>
+                      <p>
+                        A card component has a figure, a body part, and inside
+                        body there are title and actions parts
+                      </p>
+                      <div className="card-actions justify-end">
+                        <button className="btn btn-primary">Buy Now</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3>Tablets</h3>
+
+              <div className="flex flex-nowrap">
+                {laptops.map((laptop, index) => (
+                  <div key={index} className="card bg-base-100 w-96 shadow-sm">
+                    <figure>
+                      <img
+                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                        alt="Shoes"
+                      />
+                    </figure>
+                    <div className="card-body">
+                      <h2 className="card-title">Card Title</h2>
+                      <p>
+                        A card component has a figure, a body part, and inside
+                        body there are title and actions parts
+                      </p>
+                      <div className="card-actions justify-end">
+                        <button className="btn btn-primary">Buy Now</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3>Smartphones</h3>
+
+              <div className="flex flex-nowrap">
+                {laptops.map((laptop, index) => (
+                  <div key={index} className="card bg-base-100 w-96 shadow-sm">
+                    <figure>
+                      <img
+                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                        alt="Shoes"
+                      />
+                    </figure>
+                    <div className="card-body">
+                      <h2 className="card-title">Card Title</h2>
+                      <p>
+                        A card component has a figure, a body part, and inside
+                        body there are title and actions parts
+                      </p>
+                      <div className="card-actions justify-end">
+                        <button className="btn btn-primary">Buy Now</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         )}
       </section>
       <footer></footer>
