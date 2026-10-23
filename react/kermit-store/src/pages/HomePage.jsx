@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import api from "../services/api";
 
 const HomePage = () => {
@@ -9,11 +9,6 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get("/products");
-
-        console.log(response.data);
-
-        setProducts(response.data.products);
       } catch (error) {
         setError(true);
 
@@ -82,9 +77,18 @@ const HomePage = () => {
           </div>
         </div>
       </header>
-      <section>
-        {loading && <span>Loading...</span>}
-        {error && <span>Erro ao puxar os produtos da API!</span>}
+      <section className="min-h-screen flex flex-col items-center gap-4 py-4">
+        {loading ? (
+          <span className="text-xl">Loading...</span>
+        ) : error ? (
+          <span className="text-xl">Erro ao puxar os produtos da API!</span>
+        ) : (
+          <>
+            <h1 className="text-medium font-semibold">
+              Confira o nosso catálogo de produtos
+            </h1>
+          </>
+        )}
       </section>
       <footer></footer>
     </div>
