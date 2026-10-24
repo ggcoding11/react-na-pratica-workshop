@@ -37,7 +37,7 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <div className="flex flex-col gap-4 w-full max-w-4xl border border-neutral-400 rounded-lg p-6">
+      <div className="flex flex-col gap-4 w-full max-w-4xl border border-neutral-300 rounded-lg p-6">
         <div className="flex flex-col items-center">
           <div className="flex flex-col items-center">
             <img src="/kermit-icon.png" alt="kermit-store-icon" />
