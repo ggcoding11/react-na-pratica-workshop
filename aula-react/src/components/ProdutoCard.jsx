@@ -1,16 +1,16 @@
 import React from 'react'
 
-const ProdutoCard = ({ titulo = "Vazio", preco = "Sem preço", descricao = "Sem descrição" }) => {
+const ProdutoCard = ({ titulo = "Vazio", preco = "Sem preço", descricao = "Sem descrição", imagem }) => {
 
     const comprarProduto = () => {
         alert(`Produto ${titulo} comprado! Seja feliz!`)
     }
 
     return (
-        <div className="card bg-base-100 w-96 shadow-sm">
+        <div className="card bg-base-100 w-80 sm:w-96 shadow-sm">
             <figure>
                 <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                    src={imagem}
                     alt="Shoes" />
             </figure>
             <div className="card-body">

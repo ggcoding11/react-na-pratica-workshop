@@ -1,13 +1,21 @@
 import React from 'react'
-import Cabecalho from './components/Cabecalho'
-import Conteudo from './components/Conteudo'
-import Rodape from './components/Rodape'
-import ProdutoCard from './components/ProdutoCard'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
 import Layout from './components/Layout'
 
 const App = () => {
   return (
-    <Layout />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/home" element={
+          <Layout>
+            <HomePage />
+          </Layout>
+        } />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
